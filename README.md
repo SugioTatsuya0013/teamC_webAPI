@@ -10,7 +10,7 @@
 | comment   | varchar(255)    | YES  |     | NULL    |                | 
 
 ## 使い方
-###taskの追加
+###　taskの追加
 localhost:8080/tasksに対して、
 以下のようなJSON形式でPOST通信を行う。
 {
@@ -18,10 +18,10 @@ localhost:8080/tasksに対して、
 	"comment" : "タスクに関するコメント"
 }
 
-###taskの確認
+###　taskの確認
 localhost:8080/tasksにアクセスすると、登録された情報が一覧で表示される
 
-###taskの状態を更新
+###　taskの状態を更新
 localhost:8080/tasksに対して、
 以下の様なJSON形式でPUT通信を行うと、指定idのタスクのstateがtrueに更新される
 {
