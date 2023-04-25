@@ -7,6 +7,7 @@ create table if not exists todo
 <br>    task_name varchar(255) not null, 
 <br>    state boolean not null , 
 <br>    comment varchar(255),
+<br>	priority tinyint,
 <br>    primary key (id)
 <br>);
 
@@ -19,6 +20,8 @@ create table if not exists todo
 | task_name | varchar(255)    | NO   |     | NULL    |                | 
 | state     | tinyint(1)      | NO   |     | NULL    |                | 
 | comment   | varchar(255)    | YES  |     | NULL    |                | 
+| priority  | tinyint 	      | YES  |     | NULL    |                | 
+
 
 ## 使い方
 ### taskの追加
@@ -27,10 +30,12 @@ localhost:8080/tasksに対して、
 {
 	"name" : "タスクの名称",
 	"comment" : "タスクに関するコメント"
+	"priority" : タスクの優先度(0~2)
 }
 
 ### taskの確認
 localhost:8080/tasksにアクセスすると、登録された情報が一覧で表示される
+orderBy=でカラムを指定すると、その値でソートして表示
 
 ### taskの状態を更新
 localhost:8080/tasksに対して、
