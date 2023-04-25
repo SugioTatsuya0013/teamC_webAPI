@@ -1,5 +1,16 @@
 # teamC_webAPI
 
+## create table command
+create table if not exists todo
+<br>(
+<br>    id bigint(20) unsigned not null auto_increment, 
+<br>    task_name varchar(255) not null, 
+<br>    state boolean not null , 
+<br>    comment varchar(255),
+<br>    primary key (id)
+<br>);
+
+<br><br>
 ## tableの構成
 |           |                 |      |     |         |                | 
 | --------- | --------------- | ---- | --- | ------- | -------------- | 
