@@ -112,9 +112,15 @@ app.use(express.json())
 //create
 app.post('/tasks', async (req, res) => {
     try{
-        let data:any = await pool.execute('insert into todo values(0, ?, false, ?)', [req.body.name, req.body.comment]);
+        let priNum = req.body.priority ?? 0;
+        if (priNum > 2){
+            priNum = 2;
+        }
+        let data:any = await pool.execute('insert into todo values(0, ?, false, ?, ?)', [req.body.name, req.body.comment, priNum]);
         console.log("OK!")
-        res.json({"status":200, "id":data[0]["insertId"], "name":req.body.name, "state":false, "comment":req.body.comment})
+
+        res.json({"status":200, "id":data[0]["insertId"], "name":req.body.name, "state":false, "comment":req.body.comment, "priority":priNum})
+        
     }catch(error){
         console.error(error)
         res.status(400).json({error:"400 bad request"})
@@ -124,7 +130,10 @@ app.post('/tasks', async (req, res) => {
 //list
 app.get('/tasks', async (req, res) => {
     try {
-        const [rows] = await pool.query("SELECT * FROM todo;")
+
+        let orderBy = req.query.orderBy ?? "id";
+        console.log(orderBy)
+        const [rows] = await pool.query(`SELECT * FROM todo order by ${orderBy}`)
         res.json(rows)
     }catch (error) {
         console.error(error)
