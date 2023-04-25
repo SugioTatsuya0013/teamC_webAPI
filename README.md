@@ -38,3 +38,5 @@ localhost:8080/tasksに対して、
 {
 	"id":idの数字
 }
+
+![](https://raw.githubusercontent.com/Giphy/GiphyAPI/master/api_giphy_header.gif)
